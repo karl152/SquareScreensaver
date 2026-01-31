@@ -1,5 +1,6 @@
 # SquareScreensaver
-a screensaver with squares
+a screensaver with squares<br>
+<img src="https://raw.githubusercontent.com/karl152/SquareScreensaver/refs/heads/main/icon.png" alt="SquaredScreensaver Icon">
 ### How to install
 * download the ZIP archive from the releases section
 * extract the ZIP archive
