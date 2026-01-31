@@ -1,2 +1,9 @@
 # SquareScreensaver
 a screensaver with squares
+### How to install
+* download the ZIP archive from the releases section
+* extract the ZIP archive
+* run install.cmd as Administrator
+#### How to uninstall
+Settings -> Apps -> Installed Apps -> SquaredScreensaver -> Uninstall <br>
+or Control Panel -> Uninstall programs -> SquaredScreensaver -> Uninstall/Change
