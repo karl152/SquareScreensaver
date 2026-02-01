@@ -8,13 +8,14 @@ Write-Host 'SquareScreensaver
 Copyright (c) 2026 Karl "karl152"
 This software is licensed under the BSD 3-Clause License.
 See the LICENSE file for details.
-SPDX-License-Identifier: BSD-3-Clause'
+SPDX-License-Identifier: BSD-3-Clause
+'
 
 # try to install the screensaver
-try {Copy-Item .\SquareScreensaver.scr C:\Windows\System32\}
+try {Copy-Item .\SquareScreensaver.scr C:\Windows\System32\ -ErrorAction Stop}
 catch {
-Write-Host "You must extract the ZIP file and run the installer as Administrator"
-exit
+Read-Host "You must extract the ZIP file and run the installer as Administrator. Press enter to exit."
+exit 1
 }
 
 # create directory in program files with uninstaller
