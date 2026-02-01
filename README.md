@@ -6,5 +6,4 @@ a screensaver with squares<br>
 * extract the ZIP archive
 * run install.cmd as Administrator
 #### How to uninstall
-Settings -> Apps -> Installed Apps -> SquaredScreensaver -> Uninstall <br>
-or Control Panel -> Uninstall programs -> SquaredScreensaver -> Uninstall/Change
+Control Panel -> Uninstall programs -> SquaredScreensaver -> Uninstall/Change
