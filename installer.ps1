@@ -11,6 +11,11 @@ See the LICENSE file for details.
 SPDX-License-Identifier: BSD-3-Clause
 '
 
+# look for existing installation
+if (Test-Path 'C:\Program Files\SquareScreensaver' -PathType Container) {
+    Read-Host "SquareScreensaver seems to be already installed. Press enter to exit"
+    exit
+}
 # try to install the screensaver
 try {Copy-Item .\SquareScreensaver.scr C:\Windows\System32\ -ErrorAction Stop}
 catch {
