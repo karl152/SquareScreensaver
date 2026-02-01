@@ -30,6 +30,7 @@ elif "/s" in sys.argv:
         screen.cv._rootwindow.attributes("-fullscreen", True)
         screen.cv._rootwindow.bind("<Motion>", exit_input)
         screen.cv._rootwindow.bind("<Key>", exit_input)
+        screen.cv._rootwindow.config(cursor="none")
         height = screen.cv._rootwindow.winfo_screenheight()
         width = screen.cv._rootwindow.winfo_screenwidth()
         halfwidth = int(width/2)
