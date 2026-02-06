@@ -20,7 +20,7 @@ from tkinter import colorchooser
 import winreg
 import subprocess
 
-ver = "1.1"
+ver = "1.2"
 failcounter = 0
 
 def loadRegistry():
