@@ -164,6 +164,10 @@ else:
             messagebox.showerror("Error", "Error while trying to save settings")
         Window.destroy()
     Window = tk.Tk()
+    try:
+        ctypes.windll.shcore.SetProcessDpiAwareness(1)
+    except:
+        pass
     Window.resizable(False, False)
     SpeedTk = tk.IntVar(value=Speed)
     ThicknessTk = tk.IntVar(value=Thickness)
