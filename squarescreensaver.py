@@ -25,19 +25,18 @@ def loadRegistry():
         messagebox.showerror("Error", "Loop while trying to create registry")
         sys.exit(1)
     try:
-        SQSKey = winreg.OpenKeyEx(winreg.HKEY_CURRENT_USER, r"Software\\SquareScreensaver\\")
-        ConfigVersion = winreg.QueryValueEx(SQSKey, "ConfigVersion")[0]
-        BackgroundImagePath = winreg.QueryValueEx(SQSKey, "BackgroundImagePath")[0]
-        CloseOnMouseMovement = winreg.QueryValueEx(SQSKey, "CloseOnMouseMovement")[0]
-        Thickness = winreg.QueryValueEx(SQSKey, "Thickness")[0]
-        Speed = winreg.QueryValueEx(SQSKey, "Speed")[0]
-        UseBackgroundImage = winreg.QueryValueEx(SQSKey, "UseBackgroundImage")[0]
-        Squares = winreg.QueryValueEx(SQSKey, "Squares")[0]
-        R = winreg.QueryValueEx(SQSKey, "BackgroundR")[0]
-        G = winreg.QueryValueEx(SQSKey, "BackgroundG")[0]
-        B = winreg.QueryValueEx(SQSKey, "BackgroundB")[0]
+        with winreg.OpenKeyEx(winreg.HKEY_CURRENT_USER, r"Software\SquareScreensaver") as SQSKey:
+            ConfigVersion = winreg.QueryValueEx(SQSKey, "ConfigVersion")[0]
+            BackgroundImagePath = winreg.QueryValueEx(SQSKey, "BackgroundImagePath")[0]
+            CloseOnMouseMovement = winreg.QueryValueEx(SQSKey, "CloseOnMouseMovement")[0]
+            Thickness = winreg.QueryValueEx(SQSKey, "Thickness")[0]
+            Speed = winreg.QueryValueEx(SQSKey, "Speed")[0]
+            UseBackgroundImage = winreg.QueryValueEx(SQSKey, "UseBackgroundImage")[0]
+            Squares = winreg.QueryValueEx(SQSKey, "Squares")[0]
+            R = winreg.QueryValueEx(SQSKey, "BackgroundR")[0]
+            G = winreg.QueryValueEx(SQSKey, "BackgroundG")[0]
+            B = winreg.QueryValueEx(SQSKey, "BackgroundB")[0]
         # print(f"ConfigVersion: {ConfigVersion}\nBackgroundImagePath: {BackgroundImagePath}\nCloseOnMouseMovement: {CloseOnMouseMovement}\nThickness: {Thickness}\nSpeed: {Speed}\nUseBackgroundImage: {UseBackgroundImage}\nSquares: {Squares}\nbackground colors: {R} {G} {B}")
-        winreg.CloseKey(SQSKey)
     except:
         failcounter += 1
         createRegistry()
@@ -46,7 +45,6 @@ def rgb_to_hex(r, g, b):
     return f"#{r:02x}{g:02x}{b:02x}"
 
 def clearRegistry(exitafter):
-    keypath = r"Software\\SquareScreensaver\\"
     try:
         whatever = subprocess.getoutput(r'reg delete "HKEY_CURRENT_USER\Software\SquareScreensaver" /f') # sorry, but I'm not figuring out how to do that with winreg right now
         print(whatever)
@@ -56,20 +54,19 @@ def clearRegistry(exitafter):
         sys.exit(0)
 def createRegistry():
     clearRegistry(False)
-    SoftwareKey = winreg.OpenKeyEx(winreg.HKEY_CURRENT_USER, r"Software\\")
-    SQSKey = winreg.CreateKey(SoftwareKey, "SquareScreensaver")
-    # default settings
-    winreg.SetValueEx(SQSKey, "ConfigVersion", 0, winreg.REG_DWORD, 1)
-    winreg.SetValueEx(SQSKey, "BackgroundImagePath", 0, winreg.REG_SZ, "")
-    winreg.SetValueEx(SQSKey, "CloseOnMouseMovement", 0, winreg.REG_DWORD, 1)
-    winreg.SetValueEx(SQSKey, "Thickness", 0, winreg.REG_DWORD, 1)
-    winreg.SetValueEx(SQSKey, "Speed", 0, winreg.REG_DWORD, 0)
-    winreg.SetValueEx(SQSKey, "UseBackgroundImage", 0, winreg.REG_DWORD, 0)
-    winreg.SetValueEx(SQSKey, "Squares", 0, winreg.REG_DWORD, 1000)
-    winreg.SetValueEx(SQSKey, "BackgroundR", 0, winreg.REG_DWORD, 0)
-    winreg.SetValueEx(SQSKey, "BackgroundG", 0, winreg.REG_DWORD, 0)
-    winreg.SetValueEx(SQSKey, "BackgroundB", 0, winreg.REG_DWORD, 0)
-    winreg.CloseKey(SQSKey)
+    with winreg.OpenKeyEx(winreg.HKEY_CURRENT_USER, r"Software") as SoftwareKey:
+        with winreg.CreateKey(SoftwareKey, "SquareScreensaver") as SQSKey:
+            # default settings
+            winreg.SetValueEx(SQSKey, "ConfigVersion", 0, winreg.REG_DWORD, 1)
+            winreg.SetValueEx(SQSKey, "BackgroundImagePath", 0, winreg.REG_SZ, "")
+            winreg.SetValueEx(SQSKey, "CloseOnMouseMovement", 0, winreg.REG_DWORD, 1)
+            winreg.SetValueEx(SQSKey, "Thickness", 0, winreg.REG_DWORD, 1)
+            winreg.SetValueEx(SQSKey, "Speed", 0, winreg.REG_DWORD, 0)
+            winreg.SetValueEx(SQSKey, "UseBackgroundImage", 0, winreg.REG_DWORD, 0)
+            winreg.SetValueEx(SQSKey, "Squares", 0, winreg.REG_DWORD, 1000)
+            winreg.SetValueEx(SQSKey, "BackgroundR", 0, winreg.REG_DWORD, 0)
+            winreg.SetValueEx(SQSKey, "BackgroundG", 0, winreg.REG_DWORD, 0)
+            winreg.SetValueEx(SQSKey, "BackgroundB", 0, winreg.REG_DWORD, 0)
     loadRegistry()
 
 if "/p" in sys.argv:
