@@ -10,7 +10,7 @@ from pathlib import Path
 print("checking PowerShell version...")
 if Path(r"C:\Program Files\PowerShell\7\pwsh.exe").exists():
     print("starting uninstaller with PowerShell 7")
-    subprocess.Popen([r"C:\Program Files\PowerShell\7\pwsh.exe", "-ExecutionPolicy", "Bypass", r"C:\Program Files\SquareScreensaver\uninstaller.ps1"])
+    subprocess.Popen([r"C:\Program Files\PowerShell\7\pwsh.exe", "-ExecutionPolicy", "Bypass", "-File", r"C:\Program Files\SquareScreensaver\uninstaller.ps1"])
 else:
     print("starting Uninstaller with Windows PowerShell")
-    subprocess.Popen(["powershell", "-ExecutionPolicy", "Bypass", r"C:\Program Files\SquareScreensaver\uninstaller.ps1"])
+    subprocess.Popen(["powershell", "-ExecutionPolicy", "Bypass", "-File", r"C:\Program Files\SquareScreensaver\uninstaller.ps1"])
