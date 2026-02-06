@@ -6,4 +6,10 @@ a screensaver with squares<br>
 * extract the ZIP archive
 * run `install.cmd` as Administrator
 #### How to uninstall
-Control Panel -> Uninstall programs -> SquaredScreensaver -> Uninstall/Change
+* clear the configuration in the screensaver settings if you want
+* select another screensaver
+* uninstall it like any other Windows software
+  * Settings -> Apps -> Installed Apps -> SquareScreensaver -> Uninstall
+  * *or* Control Panel -> Uninstall programs -> SquareScreensaver -> Uninstall/Change
+### Compatibility
+SquareScreensaver is compatible with Microsoft Windows NT 10 (modern Windows 10 and Windows 11)
