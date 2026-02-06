@@ -4,6 +4,7 @@
 # See the LICENSE file for details.
 # SPDX-License-Identifier: BSD-3-Clause
 
+Write-Host
 Write-Host 'SquareScreensaver
 Copyright (c) 2026 Karl "karl152"
 This software is licensed under the BSD 3-Clause License.
@@ -14,6 +15,11 @@ SPDX-License-Identifier: BSD-3-Clause
 # look for existing installation
 if (Test-Path 'C:\Program Files\SquareScreensaver' -PathType Container) {
     Read-Host "SquareScreensaver seems to be already installed. Press enter to exit"
+    exit
+}
+# check Windows version
+if ([System.Environment]::OSVersion.Version.Major -ne 10) {
+    Read-Host "This software is compatible with Windows NT 10 only. Press enter to exit."
     exit
 }
 # try to install the screensaver
