@@ -4,6 +4,11 @@
 # See the LICENSE file for details.
 # SPDX-License-Identifier: BSD-3-Clause
 
+import ctypes
+try:
+    ctypes.windll.shcore.SetProcessDpiAwareness(1)
+except:
+    pass
 from turtle import *
 import random
 import sys
@@ -12,7 +17,6 @@ from tkinter import messagebox
 from tkinter import ttk
 from tkinter import filedialog
 from tkinter import colorchooser
-import ctypes
 import winreg
 import subprocess
 
@@ -87,10 +91,6 @@ elif "/s" in sys.argv:
         colormode(255)
         speed(Speed)
         screen = Screen()
-        try:
-            ctypes.windll.shcore.SetProcessDpiAwareness(1)
-        except:
-            pass
         screen.cv._rootwindow.attributes("-fullscreen", True)
         if CloseOnMouseMovement == 1:
             screen.cv._rootwindow.bind("<Motion>", exit_input)
@@ -164,10 +164,6 @@ else:
             messagebox.showerror("Error", "Error while trying to save settings")
         Window.destroy()
     Window = tk.Tk()
-    try:
-        ctypes.windll.shcore.SetProcessDpiAwareness(1)
-    except:
-        pass
     Window.resizable(False, False)
     SpeedTk = tk.IntVar(value=Speed)
     ThicknessTk = tk.IntVar(value=Thickness)
