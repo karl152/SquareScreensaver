@@ -38,7 +38,7 @@ Copy-Item .\LICENSE 'C:\Program Files\SquareScreensaver\'
 # register program
 New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SquareScreensaver"
 New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SquareScreensaver" -Name "DisplayName" -PropertyType String -Value "SquareScreensaver" -Force
-New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SquareScreensaver" -Name "DisplayVersion" -PropertyType String -Value "1.2" -Force
+New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SquareScreensaver" -Name "DisplayVersion" -PropertyType String -Value "1.3" -Force
 New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SquareScreensaver" -Name "UninstallString" -PropertyType String -Value "C:\Program Files\SquareScreensaver\uninstall.exe" -Force
 New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SquareScreensaver" -Name "Publisher" -PropertyType String -Value "karl152" -Force
 New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SquareScreensaver" -Name "InstallLocation" -PropertyType String -Value "C:\Program Files\SquareScreensaver" -Force

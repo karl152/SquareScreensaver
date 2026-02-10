@@ -20,7 +20,7 @@ from tkinter import colorchooser
 import winreg
 import subprocess
 
-ver = "1.2"
+ver = "1.3"
 failcounter = 0
 
 def loadRegistry():
@@ -127,6 +127,7 @@ elif "/s" in sys.argv:
             for x in range (4):
                 forward(d)
                 right(90)
+        screen.mainloop()
     except:
         sys.exit(0)
 else:
