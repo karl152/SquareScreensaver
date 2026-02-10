@@ -1,6 +1,7 @@
 # SquareScreensaver
 a screensaver with squares<br>
-<img src="https://raw.githubusercontent.com/karl152/SquareScreensaver/refs/heads/main/icon.png" alt="SquaredScreensaver Icon">
+<img src="https://raw.githubusercontent.com/karl152/SquareScreensaver/refs/heads/main/icon.png" alt="SquaredScreensaver Icon"><br>
+**IMPORTANT**: This "Screensaver" focuses more on providing a customizable animation than actually "saving the screen" (preventing CRT burn-in).
 ### How to install
 * download the ZIP archive from the releases section
 * extract the ZIP archive
