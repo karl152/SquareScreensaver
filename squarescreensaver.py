@@ -138,7 +138,7 @@ else:
         R = ChosenColor[0][0]
         G = ChosenColor[0][1]
         B = ChosenColor[0][2]
-        BackgroundColorThing.config(bg=ChosenColor[1])
+        BackgroundColorThing.config(bg=ChosenColor[1], fg=ChosenColor[1])
     def openBackgroundImage():
         BackgroundPicturePath = filedialog.askopenfilename(title="Choose Background Picture", filetypes=[("Pictures", "*.png *.gif *.pgm *.ppm")])
         BackgroundPathEntry.delete(0, tk.END)
@@ -180,7 +180,7 @@ else:
     ThicknessBox = ttk.LabelFrame(Window, text="Thickness") # or should I call it pen size?
     ThicknessSlider = tk.Scale(ThicknessBox, from_=0, to=5, orient="horizontal", variable=ThicknessTk)
     BackgroundBox = ttk.LabelFrame(Window, text="Background")
-    BackgroundColorThing = tk.Label(BackgroundBox, text="_____", bg=rgb_to_hex(R, G, B))
+    BackgroundColorThing = tk.Label(BackgroundBox, text="####", bg=rgb_to_hex(R, G, B), fg=rgb_to_hex(R, G, B))
     BackgroundColorButton = ttk.Button(BackgroundBox, text="Change Color", command=ChangeColor)
     BackgroundImageCheckbox = ttk.Checkbutton(BackgroundBox, text="use background image", variable=UseBackgroundImageTk)
     BackgroundOpenButton = tk.Button(BackgroundBox, text="1", font=("Wingdings", 10), command=openBackgroundImage)
