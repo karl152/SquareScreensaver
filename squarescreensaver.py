@@ -13,10 +13,7 @@ from turtle import *
 import random
 import sys
 import tkinter as tk
-from tkinter import messagebox
-from tkinter import ttk
-from tkinter import filedialog
-from tkinter import colorchooser
+from tkinter import messagebox, ttk, filedialog, colorchooser, font
 import winreg
 import subprocess
 
@@ -176,8 +173,13 @@ else:
     SquaresTk = tk.IntVar(value=Squares)
     BackgroundPathEntryTk = tk.StringVar(value=BackgroundImagePath)
     CloseScreensaverOnMouseMovementBooleanTk = tk.IntVar(value=CloseOnMouseMovement) # this was a boolean, but it's now an integer because that works easier with the registry
+    WingdingsFont = font.Font(family="Wingdings")
+    TitleFont = font.Font(family="Lucida Console", size=15)
+    style = ttk.Style(Window)
+    style.configure("Wingdings.TButton", font=WingdingsFont)
+    style.configure("Title.TLabel", font=TitleFont)
     Window.title("Settings")
-    BigText = tk.Label(Window, text="SquareScreensaver", font=("Lucida Console", 15))
+    BigText = ttk.Label(Window, text="SquareScreensaver", style="Title.TLabel")
     SmallText = ttk.Label(Window, text=f"Version {ver}")
     SpeedBox = ttk.LabelFrame(Window, text="Speed")
     SpeedSlider = ttk.Scale(SpeedBox, from_=0, to=5, orient="horizontal", variable=SpeedTk, command=updateSpeed)
@@ -187,7 +189,7 @@ else:
     BackgroundColorThing = tk.Label(BackgroundBox, text="####", bg=rgb_to_hex(R, G, B), fg=rgb_to_hex(R, G, B))
     BackgroundColorButton = ttk.Button(BackgroundBox, text="Change Color", command=ChangeColor)
     BackgroundImageCheckbox = ttk.Checkbutton(BackgroundBox, text="use background image", variable=UseBackgroundImageTk)
-    BackgroundOpenButton = tk.Button(BackgroundBox, text="1", font=("Wingdings", 10), command=openBackgroundImage)
+    BackgroundOpenButton = ttk.Button(BackgroundBox, text="1", command=openBackgroundImage, style="Wingdings.TButton", width=2)
     BackgroundPathEntry = ttk.Entry(BackgroundBox, textvariable=BackgroundPathEntryTk)
     OtherThingsBox = ttk.LabelFrame(Window, text="Other things")
     SquaresLabel = ttk.Label(OtherThingsBox, text="Squares: ")
