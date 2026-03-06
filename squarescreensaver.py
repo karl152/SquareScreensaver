@@ -20,7 +20,7 @@ from tkinter import colorchooser
 import winreg
 import subprocess
 
-ver = "1.3"
+ver = "1.4"
 failcounter = 0
 
 def loadRegistry():
@@ -147,6 +147,10 @@ else:
         clearRegistry(False)
         Window.destroy()
         sys.exit(0)
+    def updateSpeed(_):
+        SpeedBox.config(text=f"Speed: {str(int(SpeedSlider.get()))}")
+    def updateThickness(_):
+        ThicknessBox.config(text=f"Thickness: {str(int(ThicknessSlider.get()))}")
     def saveandclose():
         global BackgroundImagePath, CloseOnMouseMovement, Thickness, Speed, UseBackgroundImage, Squares, R, G, B
         try:
@@ -176,9 +180,9 @@ else:
     BigText = tk.Label(Window, text="SquareScreensaver", font=("Lucida Console", 15))
     SmallText = ttk.Label(Window, text=f"Version {ver}")
     SpeedBox = ttk.LabelFrame(Window, text="Speed")
-    SpeedSlider = tk.Scale(SpeedBox, from_=0, to=5, orient="horizontal", variable=SpeedTk)
+    SpeedSlider = ttk.Scale(SpeedBox, from_=0, to=5, orient="horizontal", variable=SpeedTk, command=updateSpeed)
     ThicknessBox = ttk.LabelFrame(Window, text="Thickness") # or should I call it pen size?
-    ThicknessSlider = tk.Scale(ThicknessBox, from_=0, to=5, orient="horizontal", variable=ThicknessTk)
+    ThicknessSlider = ttk.Scale(ThicknessBox, from_=0, to=5, orient="horizontal", variable=ThicknessTk, command=updateThickness)
     BackgroundBox = ttk.LabelFrame(Window, text="Background")
     BackgroundColorThing = tk.Label(BackgroundBox, text="####", bg=rgb_to_hex(R, G, B), fg=rgb_to_hex(R, G, B))
     BackgroundColorButton = ttk.Button(BackgroundBox, text="Change Color", command=ChangeColor)
@@ -211,4 +215,6 @@ else:
     ttk.Separator(Window, orient="horizontal").grid(row=6, column=0, columnspan=2, sticky="news")
     ttk.Button(Window, text="OK", command=saveandclose).grid(row=7, column=0)
     ttk.Button(Window, text="Cancel", command=lambda: Window.destroy()).grid(row=7, column=1)
+    updateSpeed("")
+    updateThickness("")
     Window.mainloop()
