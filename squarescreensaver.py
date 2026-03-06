@@ -151,17 +151,16 @@ else:
     def saveandclose():
         global BackgroundImagePath, CloseOnMouseMovement, Thickness, Speed, UseBackgroundImage, Squares, R, G, B
         try:
-            SQSKey = winreg.OpenKeyEx(winreg.HKEY_CURRENT_USER, r"Software\\SquareScreensaver\\", 0, winreg.KEY_SET_VALUE)
-            winreg.SetValueEx(SQSKey, "BackgroundImagePath", 0, winreg.REG_SZ, BackgroundPathEntryTk.get())
-            winreg.SetValueEx(SQSKey, "CloseOnMouseMovement", 0, winreg.REG_DWORD, CloseScreensaverOnMouseMovementBooleanTk.get())
-            winreg.SetValueEx(SQSKey, "Thickness", 0, winreg.REG_DWORD, ThicknessTk.get())
-            winreg.SetValueEx(SQSKey, "Speed", 0, winreg.REG_DWORD, SpeedTk.get())
-            winreg.SetValueEx(SQSKey, "UseBackgroundImage", 0, winreg.REG_DWORD, UseBackgroundImageTk.get())
-            winreg.SetValueEx(SQSKey, "Squares", 0, winreg.REG_DWORD, SquaresTk.get())
-            winreg.SetValueEx(SQSKey, "BackgroundR", 0, winreg.REG_DWORD, R)
-            winreg.SetValueEx(SQSKey, "BackgroundG", 0, winreg.REG_DWORD, G)
-            winreg.SetValueEx(SQSKey, "BackgroundB", 0, winreg.REG_DWORD, B)
-            winreg.CloseKey(SQSKey)
+            with winreg.OpenKeyEx(winreg.HKEY_CURRENT_USER, r"Software\SquareScreensaver", 0, winreg.KEY_SET_VALUE) as SQSKey:
+                winreg.SetValueEx(SQSKey, "BackgroundImagePath", 0, winreg.REG_SZ, BackgroundPathEntryTk.get())
+                winreg.SetValueEx(SQSKey, "CloseOnMouseMovement", 0, winreg.REG_DWORD, CloseScreensaverOnMouseMovementBooleanTk.get())
+                winreg.SetValueEx(SQSKey, "Thickness", 0, winreg.REG_DWORD, ThicknessTk.get())
+                winreg.SetValueEx(SQSKey, "Speed", 0, winreg.REG_DWORD, SpeedTk.get())
+                winreg.SetValueEx(SQSKey, "UseBackgroundImage", 0, winreg.REG_DWORD, UseBackgroundImageTk.get())
+                winreg.SetValueEx(SQSKey, "Squares", 0, winreg.REG_DWORD, SquaresTk.get())
+                winreg.SetValueEx(SQSKey, "BackgroundR", 0, winreg.REG_DWORD, R)
+                winreg.SetValueEx(SQSKey, "BackgroundG", 0, winreg.REG_DWORD, G)
+                winreg.SetValueEx(SQSKey, "BackgroundB", 0, winreg.REG_DWORD, B)
         except:
             messagebox.showerror("Error", "Error while trying to save settings")
         Window.destroy()
