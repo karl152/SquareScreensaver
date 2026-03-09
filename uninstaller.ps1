@@ -9,5 +9,6 @@ Start-Sleep 5
 try{Remove-Item C:\Windows\System32\SquareScreensaver.scr}catch{exit}
 Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SquareScreensaver" -Recurse -Force
 Remove-Item -Path 'C:\Program Files\SquareScreensaver' -Recurse -Force
-$DeleteCommand = "Write-Host 'Finishing SquareScreensaver uninstallation...'; Start-Sleep 2; Remove-Item 'C:\Program Files\SquareScreensaver' -Recurse -Force"
+$DeleteCommand = "Write-Host '   _________________________________'; Write-Host '  / _============================='; Write-Host ' /_/  FINISHING UNINSTALLATION...'; Write-Host '//'; Write-Host; Start-Sleep 2; Remove-Item 'C:\Program Files\SquareScreensaver' -Recurse -Force"
+
 Start-Process powershell.exe -ArgumentList "-NoProfile -Command $DeleteCommand"
