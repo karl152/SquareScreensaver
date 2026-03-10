@@ -69,6 +69,28 @@ def createRegistry():
             winreg.SetValueEx(SQSKey, "BackgroundG", 0, winreg.REG_DWORD, 0)
             winreg.SetValueEx(SQSKey, "BackgroundB", 0, winreg.REG_DWORD, 0)
     loadRegistry()
+def drawBorder():
+    # border hack, better than nothing (draws over the unwanted white border repeatedly)
+    user32 = ctypes.windll.user32
+    gdi32 = ctypes.windll.gdi32
+    hdc = user32.GetDC(0)
+    width = user32.GetSystemMetrics(0)
+    height = user32.GetSystemMetrics(1)
+    pen = gdi32.CreatePen(0, 1, 0x000000)
+    old_pen = gdi32.SelectObject(hdc, pen)
+    gdi32.MoveToEx(hdc, 0, 0, None)
+    gdi32.LineTo(hdc, width, 0)
+    gdi32.MoveToEx(hdc, 0, 0, None)
+    gdi32.LineTo(hdc, 0, height)
+    gdi32.MoveToEx(hdc, width-1, 0, None)
+    gdi32.LineTo(hdc, width-1, height)
+    gdi32.MoveToEx(hdc, 0, height-1, None)
+    gdi32.LineTo(hdc, width, height-1)
+    # cleanup
+    gdi32.SelectObject(hdc, old_pen)
+    gdi32.DeleteObject(pen)
+    user32.ReleaseDC(0, hdc)
+    screen.cv._rootwindow.after(1000, drawBorder)
 
 if "/p" in sys.argv:
     sys.exit(0)
@@ -93,6 +115,7 @@ elif "/s" in sys.argv:
             screen.cv._rootwindow.bind("<Motion>", exit_input)
         screen.cv._rootwindow.bind("<Key>", exit_input)
         screen.cv._rootwindow.config(cursor="none")
+        screen.cv._rootwindow.after(1000, drawBorder)
         canvas = screen.getcanvas()
         canvas.config(highlightthickness=0, borderwidth=0)
         canvas.config(bg=rgb_to_hex(R, G, B))
