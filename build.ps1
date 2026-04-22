@@ -6,9 +6,9 @@
 
 # Build requirements
 # ******************
-# - modern Python with tkinter
-# - Windows
-# - PowerShell 5+
+# - Python 3.8+ with tkinter
+# - Windows 7+
+# - PowerShell 2+ with 7-Zip or PowerShell 5/7
 # - PyInstaller
 
 Remove-Item .\SquareScreensaver.zip -ErrorAction SilentlyContinue
@@ -31,7 +31,6 @@ Remove-Item .\uninstall.spec
 Write-Host
 Write-Host "Compressing files..."
 New-Item -Path . -Name Archive -ItemType Directory
-"@echo off" | Out-File .\install.cmd
 @'
 @echo off
 cd /d %~dp0
@@ -42,11 +41,12 @@ if exist "C:\Program Files\PowerShell\7\pwsh.exe" (
     echo Starting installation with Windows PowerShell
     powershell.exe -ExecutionPolicy Bypass -File .\installer.ps1
 )
-'@ | Out-File .\install.cmd
+'@ | Out-File .\install.cmd -Encoding Default
 Copy-Item .\SquareScreensaver.scr .\Archive\
 Copy-Item .\*install* .\Archive\
 Copy-Item .\LICENSE .\Archive\
 Remove-Item .\install.cmd
-Compress-Archive -Path .\Archive\* -DestinationPath .\SquareScreensaver.zip -CompressionLevel Optimal -Verbose
+try {Compress-Archive -Path .\Archive\* -DestinationPath .\SquareScreensaver.zip -CompressionLevel Optimal -Verbose}
+catch {& "C:\Program Files\7-Zip\7z.exe" a .\SquareScreensaver.zip .\Archive\* -mx9}
 Remove-Item .\Archive -Recurse
 Remove-Item .\uninstall.exe -Recurse
