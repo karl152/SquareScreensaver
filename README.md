@@ -13,4 +13,4 @@ a screensaver with squares<br>
   * Settings -> Apps -> Installed Apps -> SquareScreensaver -> Uninstall
   * *or* Control Panel -> Uninstall programs -> SquareScreensaver -> Uninstall/Change
 ### Compatibility
-SquareScreensaver is compatible with Microsoft Windows NT 10 (modern Windows 10 and Windows 11)
+SquareScreensaver is compatible with Microsoft Windows 7 and newer.
